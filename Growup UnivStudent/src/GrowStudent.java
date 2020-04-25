@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class StudentGrow {
+public class GrowStudent {
 	public static void main(String[] args) {
 
 		Scanner pick = new Scanner(System.in);
