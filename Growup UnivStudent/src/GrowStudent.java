@@ -1,22 +1,33 @@
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 public class GrowStudent {
 	public static void main(String[] args) {
 
-		Scanner pick = new Scanner(System.in);
-		int starting, DdayNumber, Power, Money, Friend, Intelli, Month, Day;
-		
-		DdayNumber = 45; // 초기값
-		Power = 100; // 체력
-		Money = 100000; // 돈 
-		Friend = 50; // 친화력
-		Intelli = 30; // 지적능력
-		Month = 5; // 월
-		Day = 1; // 일
-		String Daily[] = { "일", "월", "화", "수", "목", "금", "토" };
-		String Today = null;
-		gamescreen gs = new gamescreen();
-		
+
+		gamescreen screen = new gamescreen();
+		screen.setTitle("대학생 키우기");
+		screen.jpanel1 = new JPanel1(screen);
+		screen.jpanel2 = new JPanel2(screen);
+		screen.jpanel3 = new JPanel3(screen);
+		screen.jpanel4 = new JPanel4(screen);
+		screen.jpanel5 = new JPanel5(screen);
+		screen.jpanel6 = new JPanel6(screen);
+		screen.jpanel7 = new JPanel7(screen);
+		screen.jpanel8 = new JPanel8(screen);
+		screen.jpanel9 = new JPanel9(screen);
+		screen.jpanel10 = new JPanel10(screen);
+		screen.jpanel11 = new JPanel11(screen);
+		screen.jpanel12 = new JPanel12(screen);
+
+		screen.add(screen.jpanel1);
+		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		screen.setSize(800, 680);
+		screen.setVisible(true);
+
+		/*Scanner pick = new Scanner(System.in);
+
 		while (true) {
 			System.out.println("\t+-----<< 대학생 키우기 >>-----+");
 			System.out.println("1. 시작하기");
@@ -32,7 +43,7 @@ public class GrowStudent {
 				System.out.println("\n잘못 입력하였습니다.\n");
 			}
 		} // while문 종료
-		
+
 		System.out.println("=========================== 게임을 시작합니다 ============================");
 		System.out.println();
 		System.out.println("<설레는 새 학기가 시작되었다!..도 잠시 어느새 중간고사가 끝?! 이제 남은 건 진짜 기말고사 뿐이야..!>");
@@ -40,28 +51,34 @@ public class GrowStudent {
 		System.out.println();
 
 		while (true) {
-			
-			
+
 			if (Month == 5) {
 				Today = Daily[Day % 7];
 			} // 5월과 6월일정에 맞게함
 			if (Day == 32) {
-				Month=6;
-				Day=1;
+				Month = 6;
+				Day = 1;
 				Today = Daily[Day % 7];
 			}
 			System.out.println("===================================================================");
 			System.out.println("종강까지 D-" + DdayNumber + "  2020년   " + Month + "월   " + Day + "일   " + Today + "요일");
-			System.out.println("체력 : " + Power + "  /  지적능력: " + Intelli + " /   돈 : " + Money + "원   /  친화력 : " + Friend);
+			System.out.println(
+					"체력 : " + Power + "  /  지적능력: " + Intelli + " /   돈 : " + Money + "원   /  친화력 : " + Friend);
 			System.out.println();
 			System.out.println("주인공 : 앞으로 종강까지 " + DdayNumber + "일! 뭘 해볼까?");
 			System.out.println();
 			System.out.println("1. 강의듣기 : 강의를 듣자! 학점을 살려야겠어!(1일 소모, 체력 -10, 지적능력 +10, 돈 -5000, <주말은 선택안됨>)");
 			System.out.println("2. 공부하기 : 공부를 하자! A+를 받는거야!(1일 소모, 체력 -20, 지적능력 +10)");
-			System.out.println("3. 알바가기 : 돈을 벌어보자! 힘든만큼  보람찰거야!(1일 소모, 체력 -20, 돈 +20000)"); // 알바종류를 switch case로 늘려도  좋을듯
-			System.out.println("4. 친구와 놀러가기 : 친목을 쌓아보자! 친구들과 돈독해지자!(1일 소모, 체력 -10, 돈 -20000, 친화력 +10)"); // 랜덤함수로 랜덤하게 선배가 준 족보(지적능력+3) 이런것도 좋을듯?!
+			System.out.println("3. 알바가기 : 돈을 벌어보자! 힘든만큼  보람찰거야!(1일 소모, 체력 -20, 돈 +20000)"); // 알바종류를 switch case로 늘려도
+																							// 좋을듯
+			System.out.println("4. 친구와 놀러가기 : 친목을 쌓아보자! 친구들과 돈독해지자!(1일 소모, 체력 -10, 돈 -20000, 친화력 +10)"); // 랜덤함수로 랜덤하게
+																											// 선배가 준
+																											// 족보(지적능력+3)
+																											// 이런것도
+																											// 좋을듯?!
 			System.out.println("5. 휴식하기 : 쉬어보자! 역시 쉬는게 최고야!(1일 소모, 체력+20)");// 랜덤함수로 배고파서 충동적으로 피자를 시켰다!(돈 -20000) 이런거..
-			System.out.println("===================================================================");// 5. 공부하기를 따로 만들까 생각중
+			System.out.println("===================================================================");// 5. 공부하기를 따로 만들까
+																										// 생각중
 			int select = pick.nextInt();
 			if (select == 1 && (Today.equals("토") || Today.equals("일"))) {
 				System.out.println("※ 주말입니다. 다시 선택해주십시오!※");
@@ -228,28 +245,25 @@ public class GrowStudent {
 				break;
 			}
 			if (DdayNumber == 0)
-				break; /* 종강시 while끝나고 엔딩 나오게 함 */
+				break;  종강시 while끝나고 엔딩 나오게 함 
 			if (Power <= 0) {
 				System.out.println("===================================================================");
 				System.out.println("체력이 0이 되었습니다. 더 이상 움직일 수 없습니다.");
 				System.out.println("========================== 게임 종료되었습니다 ===========================");
-						}
-			else if (Intelli <= 0) {
+			} else if (Intelli <= 0) {
 				System.out.println("===================================================================");
 				System.out.println("지적능력이 0이 되었습니다. 더 이상 공부를 할 수 없습니다.");
 				System.out.println("========================== 게임 종료되었습니다 ===========================");
-			}
-			else if (Money <= 0) {
+			} else if (Money <= 0) {
 				System.out.println("===================================================================");
 				System.out.println("돈이 0이 되었습니다. 더 이상 어디를 갈 수가 없습니다.");
 				System.out.println("========================== 게임 종료되었습니다 ===========================");
-			}
-			else if (Friend <= 0) {
+			} else if (Friend <= 0) {
 				System.out.println("===================================================================");
 				System.out.println("친화력이 0이 되었습니다. 더 이상 친구들을 만날 수 없습니다.");
 				System.out.println("========================== 게임 종료되었습니다 ===========================");
 			}
-			
+
 			if (Power <= 0 || Intelli <= 0 || Money <= 0 || Friend <= 0) {
 				System.out.println("===================================================================");
 				System.out.println("<게임을 다시 시작하시겠습니까?>");
@@ -270,22 +284,21 @@ public class GrowStudent {
 						Today = null;
 						break;
 					}
-						
+
 					else if (starting == 2) {
 						System.out.println("게임을 종료합니다.");
 						System.exit(0);
 					} else {
 						System.out.println("\n잘못 입력하였습니다.\n");
 					}
-				} 
+				}
 			}
 		} // 와일종료
-		
 
 		System.out.println("===================================================================\n");
 		System.out.println("=========================== 게임 끝났습니다 ============================\n");
 		System.out.println("===================================================================\n");
-		
+
 		if (Power == 100 && Intelli == 100 && Friend == 100) {
 			System.out.println("===================================================================");
 			System.out.println("당신은 과탑이 되었습니다!\n 축하드립니다!");
@@ -302,5 +315,6 @@ public class GrowStudent {
 	}
 
 	// TODO Auto-generated method stub
-
+*/
+}
 }
