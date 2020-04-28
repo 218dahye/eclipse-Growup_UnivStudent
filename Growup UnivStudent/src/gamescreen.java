@@ -114,6 +114,7 @@ class init {
 /* -------------------1.시작 화면 패널-------------------- */
 @SuppressWarnings("serial")
 class JPanel1 extends JPanel {
+	private gamescreen screen;
 	private JButton StartBtn, EndBtn;
 	private JLabel Lb1;
 	public JPanel1 jpanel1;
@@ -121,6 +122,7 @@ class JPanel1 extends JPanel {
 	
 	public JPanel1(gamescreen screen) {
 		
+		this.screen = screen;
 		setLayout(null);
 
 		Lb1 = new JLabel("<< 대학생 키우기 >>");
@@ -143,8 +145,7 @@ class JPanel1 extends JPanel {
 	class MyActionListener implements ActionListener { // 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//screen.change1_2("panel2");
-			
+			screen.change1_2("panel2");
 		}
 	}
 	
@@ -161,8 +162,8 @@ class JPanel1 extends JPanel {
 @SuppressWarnings("serial")
 class JPanel2 extends JPanel {
 	private gamescreen screen;
-	private JLabel Lb1, Lb2, Lb3, Lb4;
-	private JButton LtBtn, StBtn, PtBtn, PlayBtn, RestBtn;
+	private JLabel Lb1;
+	private JButton LtBtn;
 
 	init a = new init();
 	String Daily[] = { "금", "토", "일", "월", "화", "수", "목"};
@@ -190,42 +191,42 @@ class JPanel2 extends JPanel {
 		Lb1.setBounds(220, 50, 600, 20);
 		add(Lb1);
 
-		Lb2 = new JLabel(" 이제 남은 건 진짜 기말고사 뿐이야..!");
-		Lb2.setBounds(290, 80, 600, 20);
-		add(Lb2);
+		Lb1 = new JLabel(" 이제 남은 건 진짜 기말고사 뿐이야..!");
+		Lb1.setBounds(290, 80, 600, 20);
+		add(Lb1);
 
-		Lb3 = new JLabel("종강까지 남은 45일 동안 대학생을 열심히 키워보자!");
-		Lb3.setBounds(250, 110, 600, 20);
-		add(Lb3);
+		Lb1 = new JLabel("종강까지 남은 45일 동안 대학생을 열심히 키워보자!");
+		Lb1.setBounds(250, 110, 600, 20);
+		add(Lb1);
 
-		Lb4 = new JLabel("종강까지 D-" + a.getDdayNumber() + "  2020년   " + a.getMonth() + "월   " + a.getDay() + "일   " + a.getToday() + "요일");
-		Lb4.setBounds(270, 140, 600, 20);
-		add(Lb4);
+		Lb1 = new JLabel("종강까지 D-" + a.getDdayNumber() + "  2020년   " + a.getMonth() + "월   " + a.getDay() + "일   " + a.getToday() + "요일");
+		Lb1.setBounds(270, 140, 600, 20);
+		add(Lb1);
 
 		LtBtn = new JButton("강의듣기");
 		LtBtn.setBounds(20, 300, 130, 30);
 		add(LtBtn);
 		LtBtn.addActionListener(new MyActionListener());
 
-		StBtn = new JButton("공부하기");
-		StBtn.setBounds(170, 300, 130, 30);
-		add(StBtn);
-		StBtn.addActionListener(new MyActionListener());
+		LtBtn = new JButton("공부하기");
+		LtBtn.setBounds(170, 300, 130, 30);
+		add(LtBtn);
+		LtBtn.addActionListener(new MyActionListener());
+		
+		LtBtn = new JButton("알바가기");
+		LtBtn.setBounds(320, 300, 130, 30);
+		add(LtBtn);
+		LtBtn.addActionListener(new MyActionListener());
 
-		PtBtn = new JButton("알바가기");
-		PtBtn.setBounds(320, 300, 130, 30);
-		add(PtBtn);
-		PtBtn.addActionListener(new MyActionListener());
+		LtBtn = new JButton("친구와 놀러가기");
+		LtBtn.setBounds(470, 300, 130, 30);
+		add(LtBtn);
+		LtBtn.addActionListener(new MyActionListener());
 
-		PlayBtn = new JButton("친구와 놀러가기");
-		PlayBtn.setBounds(470, 300, 130, 30);
-		add(PlayBtn);
-		PlayBtn.addActionListener(new MyActionListener());
-
-		RestBtn = new JButton("휴식하기");
-		RestBtn.setBounds(620, 300, 130, 30);
-		add(RestBtn);
-		RestBtn.addActionListener(new MyActionListener());
+		LtBtn = new JButton("휴식하기");
+		LtBtn.setBounds(620, 300, 130, 30);
+		add(LtBtn);
+		LtBtn.addActionListener(new MyActionListener());
 	}
 
 	/* -------------------변수초기 세팅-------------------- */
@@ -244,12 +245,17 @@ class JPanel2 extends JPanel {
 
 	/* -------------------리스너-------------------- */
 	class MyActionListener implements ActionListener {
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String btnVal = e.getActionCommand();
+			
+
 			switch (btnVal) {
 			case ("강의듣기"):
 				screen.change2_3("panel3");
+				screen.jpanel3.setVisible(true);
+				screen.dispose();
 				break;
 
 			case ("공부하기"):
@@ -1006,7 +1012,7 @@ class gamescreen extends JFrame {
 
 	/* -------------------강의듣기 결과로 이동-------------------- */
 	public void change3_8(String panelName) {
-		if (panelName.contentEquals("jpane3")) {
+		if (panelName.contentEquals("jpanel3")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel3);
 			revalidate();
@@ -1021,7 +1027,7 @@ class gamescreen extends JFrame {
 	
 	/* -------------------강의듣기 결과에서 선택화면-------------------- */
 	public void change8_2(String panelName) { 
-		if (panelName.contentEquals("jpane8")) {
+		if (panelName.contentEquals("jpanel8")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel8);
 			revalidate();
@@ -1036,7 +1042,7 @@ class gamescreen extends JFrame {
 	
 	/* -------------------공부하기 결과로 이동-------------------- */
 	public void change4_9(String panelName) {
-		if (panelName.contentEquals("jpane4")) {
+		if (panelName.contentEquals("jpanel4")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel4);
 			revalidate();
@@ -1051,7 +1057,7 @@ class gamescreen extends JFrame {
 
 	/* -------------------공부하기 결과에서 선택화면-------------------- */
 	public void change9_2(String panelName) { 
-		if (panelName.contentEquals("jpane9")) {
+		if (panelName.contentEquals("jpanel9")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel9);
 			revalidate();
@@ -1066,7 +1072,7 @@ class gamescreen extends JFrame {
 
 	/* -------------------알바가기 결과로 이동-------------------- */
 	public void change5_10(String panelName) {
-		if (panelName.contentEquals("jpane5")) {
+		if (panelName.contentEquals("jpanel5")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel5);
 			revalidate();
@@ -1081,7 +1087,7 @@ class gamescreen extends JFrame {
 
 	/* -------------------알바가기 결과에서 선택화면-------------------- */
 	public void change10_2(String panelName) {
-		if (panelName.contentEquals("jpane10")) {
+		if (panelName.contentEquals("jpanel10")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel10);
 			revalidate();
@@ -1096,7 +1102,7 @@ class gamescreen extends JFrame {
 
 	/* -------------------친구와 놀러가기 결과로 이동-------------------- */
 	public void change6_11(String panelName) {
-		if (panelName.contentEquals("jpane6")) {
+		if (panelName.contentEquals("jpanel6")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel6);
 			revalidate();
@@ -1126,7 +1132,7 @@ class gamescreen extends JFrame {
 	
 	/* -------------------휴식하기 결과로 이동-------------------- */
 	public void change7_12(String panelName) {
-		if (panelName.contentEquals("jpane7")) {
+		if (panelName.contentEquals("jpanel7")) {
 			getContentPane().removeAll();
 			getContentPane().add(jpanel7);
 			revalidate();

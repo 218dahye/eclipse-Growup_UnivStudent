@@ -8,7 +8,6 @@ public class GrowStudent {
       screen.setTitle("대학생 키우기");
 
       screen.jpanel1 = new JPanel1(screen);
-      /*
       screen.jpanel2 = new JPanel2(screen);
       screen.jpanel3 = new JPanel3(screen);
       screen.jpanel4 = new JPanel4(screen);
@@ -20,8 +19,7 @@ public class GrowStudent {
       screen.jpanel10 = new JPanel10(screen);
       screen.jpanel11 = new JPanel11(screen);
       screen.jpanel12 = new JPanel12(screen);
-	  screen.jpanel13 = new JPanel13(screen);
-*/
+	  //screen.jpanel13 = new JPanel13(screen);
 
       screen.add(screen.jpanel1);
       screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
